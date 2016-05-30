@@ -18,6 +18,7 @@ public class Mecanica {
         this.jogador = pessoa;
         this.vivo = true;
         this.tempoAtual = 0;
+        this.rand = new Random();
     }
     
     public String getMensagem() {
@@ -49,6 +50,10 @@ public class Mecanica {
         return false;
     }
     
+    public void passarTurno() {
+        this.turno = true;
+    }
+    
     public boolean getTurno() {
         return this.turno;
     }
@@ -67,7 +72,7 @@ public class Mecanica {
     }
     
     // inicia um evento com um numero da ação previa feita
-    public void iniciarEvento(Evento ev){
+    public void iniciarEvento(Evento ev) {
         //
         eventos.add(ev);
     }
@@ -118,6 +123,7 @@ public class Mecanica {
         //
         Evento eventoAtual = eventos.get(eventos.size() - 1);
         if(eventoAtual instanceof Batalha) {
+            System.out.println("top batalha");
             Batalha ev = (Batalha) eventoAtual;
             switch(opt) {
                 case 1:
@@ -170,12 +176,14 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof Armadilha) {
+            System.out.println("top armadilha");
             Armadilha ev = (Armadilha) eventoAtual;
             if(opt == 1) {
                 ev.continuar(this.jogador);
             }
         }
         else if(eventoAtual instanceof NovoItem) {
+            System.out.println("top novoitem");
             NovoItem ev = (NovoItem) eventoAtual;
             switch(opt) {
                 case 1:
@@ -187,6 +195,7 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof NenhumEvento) {
+            System.out.println("top nenhum evento");
             NenhumEvento ev = (NenhumEvento) eventoAtual;
             if(opt == 1) {
                 ev.continuar();
@@ -196,6 +205,7 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof DiminuirSanidade) {
+            System.out.println("top diminuir sanidade");
             DiminuirSanidade ev = (DiminuirSanidade) eventoAtual;
             if(opt == 1) {
                 ev.continuar(this.jogador);
@@ -208,6 +218,7 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof EventoPadrao) {
+            System.out.println("top evento padrao");
             EventoPadrao ev = (EventoPadrao) eventoAtual;
             switch(opt) {
                 case 1:
@@ -227,7 +238,6 @@ public class Mecanica {
                     break;
             }
         }
-        fechaEvento();
     }
     
     public void fechaEvento() {

@@ -81,7 +81,7 @@ public class Batalha extends Evento
         if(pessoa.getVida() <= 0) {
             this.setFimEvento(true);
         }
-        
+        Mecanica.getInstancia().passarTurno();
         this.setMensagem("Seu inimigo te ataca!");
     }
     

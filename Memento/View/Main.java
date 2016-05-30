@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void main() {
-        imprimir(" - Memento - v1.0.a");
+        imprimir(" - Memento - v1.0.b");
         imprimir("Digite qual classe deverá ser (1) Mago (2) Cavaleiro: ");
         opt = Keyboard.readInt();
         Pessoa pessoa = null;
@@ -42,11 +42,10 @@ public class Main {
         while(mecanica.temEventos()) {
             i = 1;
             if(Mecanica.getInstancia().getTurno()) {
-                i = 1;
                 imprimir("Digite sua opção:");
                 List<String> opcoes = mecanica.getOpcoes();
                 for(String str : opcoes) {
-                    imprimir("" + i + ". " + str);
+                    imprimir("" + (i++) + ". " + str);
                 }
                 imprimir("");
                 opt = Keyboard.readInt();
@@ -59,9 +58,10 @@ public class Main {
                 imprimir(mecanica.getMensagem());
             }
             else {
-                mecanica.monstroAtaque();
+                    mecanica.monstroAtaque();
                 imprimir(mecanica.getMensagem());
             }
+            mecanica.fechaEvento();
         }
     }
 
