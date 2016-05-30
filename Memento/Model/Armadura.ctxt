@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=nome\ descricao\ defesa
+comment0.target=Armadura(java.lang.String,\ java.lang.String,\ int)
+numComments=1
