@@ -1,6 +1,7 @@
 package Controller;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.List;
 import Model.*;
 
 public class Mecanica {
@@ -37,6 +38,10 @@ public class Mecanica {
 		}
 		return instancia;
 	}
+
+	public List<String> getOpcoes() {
+		return eventos.get(eventos.size() - 1).getOpcoes();
+	}
 	
 	// inicia um evento com um numero da ação previa feita
 	public void iniciarEvento(Evento ev){
@@ -49,10 +54,11 @@ public class Mecanica {
 		//
 		Evento eventoAtual = eventos.get(eventos.size() - 1);
 		if(eventoAtual instanceof Batalha) {
+			ev = (Batalha) eventoAtual;
 			switch(opt) {
 				case 1:
 					try {
-						eventoAtual.atacar(this.jogador);
+						ev.atacar(this.jogador);
 					}
 					catch (EventoException ex) {
 						throw new EventoException(ex);
@@ -61,12 +67,12 @@ public class Mecanica {
 					//
 				case 2:
 					if(selecionado == null) {
-						eventoAtual.selecionarDano();
+						iniciarEvento(new SelecionarDano(opt));
 					}
 					else {
 						if(selecionado instanceof Dano) {
 							try {
-								eventoAtual.atacar((Dano) selecionado);
+								ev.atacar((Dano) selecionado);
 							}
 							catch (EventoException ex) {
 								throw new EventoException(ex);
@@ -79,11 +85,11 @@ public class Mecanica {
 					//
 				case 3:
 					if(selecionado == null)
-						eventoAtual.selecionarItem();
+						iniciarEvento(new SelecionarItem(opt));
 					else {
-						if(selecionado instanceof Item) {
+						if(selecionado instanceof Consumivel) {
 							try {
-								eventoAtual.atacar((Item) selecionado);
+								ev.atacar((Consumivel) selecionado);
 							}
 							catch (EventoException ex) {
 								throw new EventoException(ex);
@@ -96,29 +102,33 @@ public class Mecanica {
 			}
 		}
 		else if(eventoAtual instanceof Armadilha) {
+			ev = (Armadilha) eventoAtual;
 			if(opt == 1) {
-				eventoAtual.continuar(this.jogador);
+				ev.continuar(this.jogador);
 			}
 		}
 		else if(eventoAtual instanceof NovoItem) {
+			ev = (NovoItem) eventoAtual;
 			switch(opt) {
 				case 1:
-					eventoAtual.pegarItem(jogador);
+					ev.pegarItem(jogador);
 					break;
 				case 2:
-					eventoAtual.descartarItem();
+					ev.descartarItem();
 					break;
 			}
 		}
 		else if(eventoAtual instanceof NenhumEvento) {
+			ev = (NenhumEvento) eventoAtual;
 			if(opt == 1) {
-				eventoAtual.continuar();
+				ev.continuar();
 			}
 		}
 		else if(eventoAtual instanceof Info) {
 			// não implementado ainda
 		}
 		else if(eventoAtual instanceof DiminuirSanidade) {
+			ev = (DiminuirSanidade) eventoAtual;
 			if(opt == 1) {
 				eventoAtual.continuar(this.jogador);
 			}
@@ -130,21 +140,22 @@ public class Mecanica {
 			// não implementado ainda
 		}
 		else if(eventoAtual instanceof EventoPadrao) {
+			ev = (EventoPadrao) eventoAtual;
 			switch(opt) {
 				case 1:
-					eventoAtual.info();
+					ev.info();
 					break;
 				case 2:
-					eventoAtual.dormir();
+					ev.dormir();
 					break;
 				case 3:
-					eventoAtual.fogueira();
+					ev.fogueira();
 					break;
 				case 4:
-					eventoAtual.explorar();
+					ev.explorar();
 					break;
 				case 5:
-					eventoAtual.sair();
+					ev.sair();
 					break;
 			}
 		}
