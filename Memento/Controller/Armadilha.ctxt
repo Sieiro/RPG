@@ -1,2 +1,6 @@
 #BlueJ class context
-numComments=0
+comment0.params=opt
+comment0.target=Armadilha(int)
+comment1.params=pessoa
+comment1.target=void\ continuar(Model.Pessoa)
+numComments=2

@@ -1,8 +1,9 @@
 package Controller;
+import java.util.ArrayList;
 public class NenhumEvento extends Evento {
     public NenhumEvento(int opt) {
         super(opt, "Nenhum Evento encontrado... (opt " + opt + ")");
-        List<String> lista = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<String>();
         lista.add("Continuar");
         setOpcoes(lista);
     }

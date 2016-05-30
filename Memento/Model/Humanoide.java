@@ -11,9 +11,9 @@ public abstract class Humanoide{
         return this.vida;
     }
     public void setVida(int v){
-       this.vida = vida;
+       this.vida = v;
     }
     public void setNome(String n){
-        this.nome = nome;
+        this.nome = n;
     }
 }

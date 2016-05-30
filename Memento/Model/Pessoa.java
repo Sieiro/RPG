@@ -9,4 +9,7 @@ public abstract class Pessoa extends Humanoide{
     public int getSanidade(){
         return this.sanidade;
     }    
+    public void setSanidade(int s){
+        this.sanidade = s;
+    }
 }

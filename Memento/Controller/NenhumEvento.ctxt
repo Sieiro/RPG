@@ -1,2 +1,6 @@
 #BlueJ class context
-numComments=0
+comment0.params=opt
+comment0.target=NenhumEvento(int)
+comment1.params=
+comment1.target=void\ continuar()
+numComments=2

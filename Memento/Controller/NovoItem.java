@@ -1,12 +1,13 @@
 package Controller;
 import Model.*;
+import java.util.ArrayList;
 public class NovoItem extends Evento {
     private Item item;
     
     public NovoItem(int opt) {
         super(opt, "Item encontrado! (opt " + opt + ")");
-        this.item = new Item("Poção");
-        List<String> lista = new ArrayList<>();
+        this.item = new Consumivel("Poção.", "Recupera vida.");
+        ArrayList<String> lista = new ArrayList<String>();
         lista.add("Pegar Item");
         lista.add("Descartar Item");
         this.setOpcoes(lista);

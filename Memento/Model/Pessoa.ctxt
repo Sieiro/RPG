@@ -3,4 +3,6 @@ comment0.params=nome\ vida\ sanidade
 comment0.target=Pessoa(java.lang.String,\ int,\ int)
 comment1.params=
 comment1.target=int\ getSanidade()
-numComments=2
+comment2.params=s
+comment2.target=void\ setSanidade(int)
+numComments=3

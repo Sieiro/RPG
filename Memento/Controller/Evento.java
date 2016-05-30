@@ -17,6 +17,10 @@ public abstract class Evento
         return this.mensagem;
     }
     
+    public void setMensagem(String m){
+        this.mensagem = m;
+    }
+    
     public int getOpt() {
         return this.opt;
     }
@@ -29,11 +33,11 @@ public abstract class Evento
         this.opcoes = opcoes;
     }
     
-    private boolean getFimEvento() {
+    public boolean getFimEvento() {
         return this.fimEvento;
     }
     
-    private void setFimEvento(boolean fim) {
+    public void setFimEvento(boolean fim) {
         this.fimEvento = fim;
     }
 }
