@@ -1,5 +1,5 @@
 package Controller;
-
+import java.util.Random;
 
 /**
  * Write a description of class Mecanica here.
@@ -9,12 +9,11 @@ package Controller;
  */
 public class Mecanica
 {
-    // instance variables - replace the example below with your own
     private static Pessoa jogador; // jogador atual
     private static boolean vivo; // se o jogador esta vivo ou não
     private static int tempoAtual; // tempo atual (em minutos)
-    // private static int diasPassados; // dias passados no jogo
-    private static Evento EventoAtual;
+    private static Evento eventoAtual; // evento atual, se tiver um evento
+    Random rand;
     
     // inicia as variaveis básicas do ambiente
     public Mecanica(Pessoa pessoa) {
@@ -23,26 +22,74 @@ public class Mecanica
         this.tempoAtual = 0;
     }
     
-    // inicia um evento com um numero aleatorio
-    public static String iniciarEvento(int opt) {
+    // inicia um evento com um numero da ação previa feita
+    public static Evento iniciarEvento(int opt) {
         //
+        this.eventoAtual = gerarEvento(opt);
+        return this.eventoAtual;
     }
     
     // opera o evento com um numero escolhido pelo usuario
-    public static String operarEvento(int opt) {
+    public static Evento operarEvento(int opt) {
         //
     }
     
     // pode encontrar um evento
-    public static boolean Explorar() {
+    public static boolean explorar() {
         //
     }
     
+    // pode encontrar um evento
     public static boolean dormir() {
         //
     }
     
+    // pode encontrar um evento
     public static boolean ascenderFogueira() {
         //
     }
+    
+    // gera o evento com base na opção selecionada
+    public static Evento gerarEvento(int opt) {
+        // opt (1) Checar info (2) dormir (3) ascender fogueira (4) explorar (5) Sair do jogo
+        int chance = gerarNumero(0, 100);
+        switch(opt) {
+            case 1:
+                // checar info
+                return new Info();
+            case 2:
+                // dormir
+                if(chance < 10)
+                    return new Batalha(opt);
+                if(chance < 40)
+                    return new DiminuirSanidade(opt);
+                return new NennhumEvento(opt); // não aconteceu nada
+            case 3:
+                // ascender fogueira
+                if(chance < 10)
+                    return new Batalha(opt);
+                if(chance < 40)
+                    return new DiminuirSanidade(opt);
+                return new NennhumEvento(opt); // não aconteceu nada
+            case 4:
+                // explorar
+                if(chance < 15)
+                    return new Batalha(opt);
+                if(chance < 30)
+                    return new Armadilha(opt);
+                if(chance < 45)
+                    return new NovoItem(opt);
+                if(chance < 60)
+                    return new DiminuirSanidade(opt);
+                return new NennhumEvento(opt); // não aconteceu nada
+            case 5:
+                return new Sair();
+        }
+    }
+    
+    
+    public static gerarNumero(int min, int max) {
+        return rand.nextInt((max - min) + 1) + min;
+    }
+    // 
 }
