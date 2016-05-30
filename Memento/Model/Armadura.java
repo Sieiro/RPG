@@ -5,4 +5,13 @@ public class Armadura extends Item implements Equipavel{
     super(nome, descricao);
     this.defesa = defesa;
     }
+    
+    public int getDefesa(){
+        return this.defesa;
+    }
+    
+    public void setDefesa(int d){
+        this.defesa = d;
+    }
+   
 }
