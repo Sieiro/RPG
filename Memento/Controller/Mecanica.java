@@ -34,7 +34,7 @@ public class Mecanica {
 	// opera o evento com um numero escolhido pelo usuario
 	public void operarEvento(int opt) throws EventoException {
 		//
-		Evento eventoAtual = gerarEvento(opt);
+		Evento eventoAtual = eventos.get(eventos.size() - 1)
 		if(eventoAtual instanceof Batalha) {
 			switch(opt) {
 				case 1:
