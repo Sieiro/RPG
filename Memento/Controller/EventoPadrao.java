@@ -1,4 +1,5 @@
 package Controller;
+import java.util.*;
 
 public class EventoPadrao extends Evento {
     public EventoPadrao() {
@@ -50,14 +51,14 @@ public class EventoPadrao extends Evento {
 					return new Batalha(opt);
 				if(chance < 40)
 					return new DiminuirSanidade(opt);
-				return new NennhumEvento(opt); // não aconteceu nada
+				return new NenhumEvento(opt); // não aconteceu nada
 			case 3:
 				// ascender fogueira
 				if(chance < 10)
 					return new Batalha(opt);
 				if(chance < 40)
 					return new DiminuirSanidade(opt);
-				return new NennhumEvento(opt); // não aconteceu nada
+				return new NenhumEvento(opt); // não aconteceu nada
 			case 4:
 				// explorar
 				if(chance < 15)
@@ -68,7 +69,8 @@ public class EventoPadrao extends Evento {
 					return new NovoItem(opt);
 				if(chance < 60)
 					return new DiminuirSanidade(opt);
-				return new NennhumEvento(opt); // não aconteceu nada
+				return new NenhumEvento(opt); // não aconteceu nada
 		}
+		return new NenhumEvento(opt);
 	}
 }

@@ -1,7 +1,5 @@
 package Controller;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import Model.*;
 
 public class Mecanica {
@@ -18,6 +16,10 @@ public class Mecanica {
 		this.jogador = pessoa;
 		this.vivo = true;
 		this.tempoAtual = 0;
+	}
+	
+	public Pessoa getJogador() {
+	    return this.jogador;
 	}
 	
 	public static Mecanica getInstancia() {
@@ -53,11 +55,13 @@ public class Mecanica {
 	public void operarEvento(int opt) throws EventoException {
 		//
 		Evento eventoAtual = eventos.get(eventos.size() - 1);
+		Evento ev;
 		if(eventoAtual instanceof Batalha) {
 			ev = (Batalha) eventoAtual;
 			switch(opt) {
 				case 1:
 					try {
+					    ev = (Batalha) eventoAtual;
 						ev.atacar(this.jogador);
 					}
 					catch (EventoException ex) {

@@ -18,9 +18,13 @@ public class Batalha extends Evento
     }
     
     // ataca um inimigo com base em sua arma equipada
+    public void atacar(Pessoa jogador) {
+        
+    }
+    /*
     public void atacar(Pessoa pessoa) throws EventoException {
         //
-        Pessoa jogador = Mecanica.getPlayer();
+        Pessoa jogador = Mecanica.getJogador();
         Arma arma = pessoa.getArma();
         int dano = arma.getAtaque() - this.inimigo.getDefesa();
         if(jogador instanceof Mago) {
@@ -38,6 +42,7 @@ public class Batalha extends Evento
         
         this.setMesangem("Você ataca seu inimigo: " + this.inimigo.getNome());
     }
+    */
     
     // ataca um inimigo com base em uma habilidade/magia
     public void atacar(Dano dano) throws EventoException {

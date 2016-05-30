@@ -1,10 +1,11 @@
 package Controller;
-import java.util.ArrayList;
+import java.util.*;
+import Model.*;
 public abstract class Evento
 {
     private int opt;
     private String mensagem;
-    private ArrayList<String> opcoes = new ArrayList<String>();
+    private List<String> opcoes;
     private boolean fimEvento;
     
     public Evento(int opt, String mensagem) {
@@ -25,11 +26,11 @@ public abstract class Evento
         return this.opt;
     }
     
-    public ArrayList<String> getOpcoes() {
+    public List<String> getOpcoes() {
         return this.opcoes;
     }
     
-    public void setOpcoes(ArrayList<String> opcoes) {
+    public void setOpcoes(List<String> opcoes) {
         this.opcoes = opcoes;
     }
     
