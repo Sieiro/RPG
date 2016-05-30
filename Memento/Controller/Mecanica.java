@@ -20,6 +20,11 @@ public class Mecanica {
         this.tempoAtual = 0;
     }
     
+    public String getMensagem() {
+        Evento ev = eventos.get(eventos.size() - 1);
+        return ev.getMensagem();
+    }
+    
     public void setSelecionado(Selecionavel sel) {
         this.selecionado = sel;
     }
@@ -30,6 +35,12 @@ public class Mecanica {
     
     public static Mecanica getInstancia() {
         return instancia;
+    }
+    
+    public void monstroAtaque() {
+        Evento eventoAtual = eventos.get(eventos.size() - 1);
+        Batalha ev = (Batalha) eventoAtual;
+        ev.recebe(jogador);
     }
 
     public boolean temEventos() {

@@ -2,14 +2,15 @@ package Model;
 import java.util.*;
 public class Mochila {
     List<Item> itens = new ArrayList<Item>();
-    private Mochila instancia;
+    private static Mochila instancia;
+    
+    private Mochila() {}
+    
     public static Mochila getInstancia() {
     	if(instancia == null) {
     		instancia = new Mochila();
-    		return instancia;
     	}
-    	else
-    		return instancia;
+    	return instancia;
 
     }
     

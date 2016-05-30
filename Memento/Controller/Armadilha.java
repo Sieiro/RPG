@@ -1,6 +1,6 @@
 package Controller;
 import Model.*;
-import java.util.ArrayList;
+import java.util.*;
 public class Armadilha extends Evento {
     public Armadilha(int opt) {
         super(opt, "Armadilha encontrada (opt " + opt + ")");

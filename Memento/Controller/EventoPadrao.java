@@ -44,7 +44,7 @@ public class EventoPadrao extends Evento {
 		switch(opt) {
 			case 1:
 				// checar info
-				return new Info();
+				return new Info(opt);
 			case 2:
 				// dormir
 				if(chance < 10)
