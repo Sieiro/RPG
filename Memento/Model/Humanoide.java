@@ -13,4 +13,7 @@ public abstract class Humanoide{
     public void setVida(int v){
        this.vida = vida;
     }
+    public void setNome(String n){
+        this.nome = nome;
+    }
 }
