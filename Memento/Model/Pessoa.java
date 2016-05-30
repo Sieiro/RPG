@@ -1,9 +1,12 @@
 package Model;
 public abstract class Pessoa extends Humanoide{
-    private int loucura;
+    private int sanidade;
 
-    public Pessoa(String nome, int vida, int loucura){
+    public Pessoa(String nome, int vida, int sanidade){
         super(nome, vida);
-        this.loucura = loucura;
+        this.sanidade = sanidade;
     } 
+    public int getSanidade(){
+        return this.sanidade;
+    }    
 }
