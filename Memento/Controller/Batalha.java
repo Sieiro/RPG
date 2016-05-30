@@ -1,26 +1,44 @@
 package Controller;
-public class Batalha{
-    // instance variables - replace the example below with your own
-    private int x;
+import Model.*;
 
-    /**
-     * Constructor for objects of class Batalha
-     */
-    public Batalha()
-    {
-        // initialise instance variables
-        x = 0;
+public class Batalha extends Evento
+{
+    private Inimigo inimigo;
+    
+    private String[] opcoes = {"Ataque normal", "Habilidade", "Magia"};
+        
+    public Batalha(int opt) {
+        super(opt, "Você entrou em uma batalha quando selecionava a opção " + opt);
+        this.inimigo = Inimigo(); // cria inimigo (aleatório?)
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    // ataca um inimigo com base em sua arma equipada
+    public void atacar(Inimigo inimigo) {
+        //
+    }
+    
+    // ataca um inimigo com base em uma habilidade/magia
+    public void atacar(Pessoa pessoa, Dano dano) {
+        //
+    }
+    
+    // ataca um inimigo com base em um item
+    public void atacar(Pessoa pessoa, Item item) {
+        //
+    }
+    
+    // monstro te ataca
+    public void atacar(Pessoa pessoa) {
+        //
+    }
+    
+    // fugir do combate; chance de morrer ao tentar
+    public void fugir(Pessoa pessoa) {
+        //
+    }
+    
+    // pega as opções
+    public String[] getOpcoes() {
+        return this.opcoes;
     }
 }
