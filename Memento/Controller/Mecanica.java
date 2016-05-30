@@ -55,8 +55,9 @@ public class Mecanica {
 	public void operarEvento(int opt) throws EventoException {
 		//
 		Evento eventoAtual = eventos.get(eventos.size() - 1);
+		Evento ev;
 		if(eventoAtual instanceof Batalha) {
-			Batalha ev = (Batalha) eventoAtual;
+			ev = (Batalha) eventoAtual;
 			switch(opt) {
 				case 1:
 					try {
@@ -70,7 +71,7 @@ public class Mecanica {
 					//
 				case 2:
 					if(selecionado == null) {
-						//iniciarEvento(new SelecionarDano(opt));
+						iniciarEvento(new SelecionarDano(opt));
 					}
 					else {
 						if(selecionado instanceof Dano) {
@@ -88,7 +89,7 @@ public class Mecanica {
 					//
 				case 3:
 					if(selecionado == null)
-						//iniciarEvento(new SelecionarItem(opt));
+						iniciarEvento(new SelecionarItem(opt));
 					else {
 						if(selecionado instanceof Consumivel) {
 							try {
@@ -105,13 +106,13 @@ public class Mecanica {
 			}
 		}
 		else if(eventoAtual instanceof Armadilha) {
-			Armadilha ev = (Armadilha) eventoAtual;
+			ev = (Armadilha) eventoAtual;
 			if(opt == 1) {
 				ev.continuar(this.jogador);
 			}
 		}
 		else if(eventoAtual instanceof NovoItem) {
-			NovoItem ev = (NovoItem) eventoAtual;
+			ev = (NovoItem) eventoAtual;
 			switch(opt) {
 				case 1:
 					ev.pegarItem(jogador);
@@ -122,7 +123,7 @@ public class Mecanica {
 			}
 		}
 		else if(eventoAtual instanceof NenhumEvento) {
-			NenhumEvento ev = (NenhumEvento) eventoAtual;
+			ev = (NenhumEvento) eventoAtual;
 			if(opt == 1) {
 				ev.continuar();
 			}
@@ -131,7 +132,7 @@ public class Mecanica {
 			// não implementado ainda
 		}
 		else if(eventoAtual instanceof DiminuirSanidade) {
-			DiminuirSanidade ev = (DiminuirSanidade) eventoAtual;
+			ev = (DiminuirSanidade) eventoAtual;
 			if(opt == 1) {
 				eventoAtual.continuar(this.jogador);
 			}
@@ -143,7 +144,7 @@ public class Mecanica {
 			// não implementado ainda
 		}
 		else if(eventoAtual instanceof EventoPadrao) {
-			EventoPadrao ev = (EventoPadrao) eventoAtual;
+			ev = (EventoPadrao) eventoAtual;
 			switch(opt) {
 				case 1:
 					ev.info();
