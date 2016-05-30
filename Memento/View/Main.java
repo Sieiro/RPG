@@ -1,7 +1,7 @@
 package View;
 import Controller.*;
 import Model.*;
-
+import java.util.ArrayList;
 public class Main {
     private static Mecanica mecanica;
     private static int opt;
@@ -14,15 +14,15 @@ public class Main {
     public static void main() {
         imprimir(" - Memento - v1.0.a");
         imprimir("Digite qual classe deverá ser (1) Mago (2) Cavaleiro: ");
-        this.opt = Keyboard.readInt();
+        opt = Keyboard.readInt();
         Pessoa pessoa;
-        if(opt == 1) pessoa = new Mago();
-        else if(opt == 2) pessoa = new Cavaleiro();
+        if(opt == 1) pessoa = new Mago(null,1,1);
+        else if(opt == 2) pessoa = new Cavaleiro(null,1,1);
         imprimir("Digite seu nome: ");
-        this.arg = Keyboard.readString();
+        arg = Keyboard.readString();
         pessoa.setNome(arg);
-        this.mecanica = Mecanica.getInstancia(pessoa);
-        mecanica.iniciarEvento(new EventoPadrao(0));
+        mecanica = Mecanica.getInstancia(pessoa);
+        mecanica.iniciarEvento(new EventoPadrao());
         run();
     }
 
@@ -30,7 +30,7 @@ public class Main {
         while(mecanica.temEventos()) {
             int i=1;
             imprimir("Digite sua opção:");
-            List<String> opcoes = mecanica.getOpcoes();
+            ArrayList<String> opcoes = mecanica.getOpcoes();
             for(String str : opcoes) {
                 imprimir("" + i + ". " + str);
             }
@@ -41,7 +41,7 @@ public class Main {
         }
     }
 
-    public void imprimir(String msg) {
+    public static void imprimir(String msg) {
         System.out.println(msg);
     }
 }
