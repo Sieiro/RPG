@@ -7,4 +7,10 @@ public abstract class Humanoide{
         this.nome = nome;
         this.vida = vida;
     }
+    public int getVida(){
+        return this.vida;
+    }
+    public void setVida(int v){
+       this.vida = vida;
+    }
 }

@@ -20,15 +20,15 @@ public class Mecanica {
 	}
 	
 	public static Mecanica getInstancia() {
-		return this.instancia;
+		return instancia;
 	}
 
 	private static Mecanica getInstancia(Pessoa pessoa) {
-		if(this.instancia == null) {
-			this.instancia = new Mecanica(pessoa);
-			return this.instancia;
+		if(instancia == null) {
+			instancia = new Mecanica(pessoa);
+			return instancia;
 		}
-		return this.instancia;
+		return instancia;
 	}
 	
 	// inicia um evento com um numero da ação previa feita
