@@ -8,9 +8,9 @@ public class Mecanica {
 	private static Pessoa jogador; 				// jogador atual
 	private static boolean vivo; 				// se o jogador esta vivo ou não
 	private static int tempoAtual; 				// tempo atual em minutos
-	private static ArrayList<Evento> eventos = new ArrayList<Evento>(); 		// evento atual, se tiver um evento
+	private static ArrayList<Evento> eventos; 	// evento atual, se tiver um evento
 	private static Selecionavel selecionado;	// algo selecionado
-	Random rand;
+	private Random rand;
 	
 	// inicia as variaveis básicas do ambiente
 	private Mecanica(Pessoa pessoa){
@@ -23,8 +23,15 @@ public class Mecanica {
 		return instancia;
 	}
 
-	private static Mecanica getInstancia(Pessoa pessoa) {
+	public boolean temEventos() {
+		if(eventos.size() > 0)
+			return true;
+		return false;
+	}
+
+	public static Mecanica getInstancia(Pessoa pessoa) {
 		if(instancia == null) {
+			eventos = new ArrayList<Evento>();
 			instancia = new Mecanica(pessoa);
 			return instancia;
 		}
@@ -45,7 +52,7 @@ public class Mecanica {
 			switch(opt) {
 				case 1:
 					try {
-						eventoAtual.atacar(jogador);
+						eventoAtual.atacar(this.jogador);
 					}
 					catch (EventoException ex) {
 						throw new EventoException(ex);
@@ -90,7 +97,7 @@ public class Mecanica {
 		}
 		else if(eventoAtual instanceof Armadilha) {
 			if(opt == 1) {
-				eventoAtual.continuar(jogador);
+				eventoAtual.continuar(this.jogador);
 			}
 		}
 		else if(eventoAtual instanceof NovoItem) {
@@ -113,7 +120,7 @@ public class Mecanica {
 		}
 		else if(eventoAtual instanceof DiminuirSanidade) {
 			if(opt == 1) {
-				eventoAtual.continuar(jogador);
+				eventoAtual.continuar(this.jogador);
 			}
 		}
 		else if(eventoAtual instanceof SelecionarItem) {
