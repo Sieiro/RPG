@@ -1,8 +1,8 @@
 package Controller;
 
 public class EventoPadrao extends Evento {
-    public EventoPadrao(int opt) {
-        super(opt, "");
+    public EventoPadrao() {
+        super(0, "");
         List<String> lista = new ArrayList<>();
         lista.add("Checar Informações");
         lista.add("Dormir");

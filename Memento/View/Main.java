@@ -20,11 +20,25 @@ public class Main {
         else if(opt == 2) pessoa = new Cavaleiro();
         imprimir("Digite seu nome: ");
         this.arg = Keyboard.readString();
-        Main.mecanica = new Mecanica()
+        pessoa.setNome(arg);
+        this.mecanica = Mecanica.getInstancia(pessoa);
+        mecanica.iniciarEvento(new EventoPadrao(0));
+        run();
     }
 
     public static void run() {
-
+        while(mecanica.temEventos()) {
+            int i=1;
+            imprimir("Digite sua opção:");
+            List<String> opcoes = mecanica.getOpcoes();
+            for(String str : opcoes) {
+                imprimir("" + i + ". " + str);
+            }
+            imprimir("");
+            opt = Keyboard.readInt();
+            mecanica.operarEvento(opt);
+            imprimir(mecanica.getMessage());
+        }
     }
 
     public void imprimir(String msg) {
