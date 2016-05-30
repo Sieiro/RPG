@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Armadilha extends Evento {
     public Armadilha(int opt) {
         super(opt, "Armadilha encontrada (opt " + opt + ")");
-        ArrayList<String> lista = new ArrayList<String>();
+        List<String> lista = new ArrayList<String>();
         lista.add("Continuar");
         setOpcoes(lista);
     }

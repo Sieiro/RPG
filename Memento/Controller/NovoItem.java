@@ -16,7 +16,7 @@ public class NovoItem extends Evento {
     // pega o item
     public void pegarItem(Pessoa pessoa) {
         //
-        pessoa.getMochila().add(this.item);
+        Mochila.getInstancia().add(this.item);
         this.setFimEvento(true);
         this.setMensagem("Você conseguiu: " + item.getNome());
     }

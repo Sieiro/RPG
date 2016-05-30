@@ -9,13 +9,17 @@ public class Mecanica {
     private static int tempoAtual;              // tempo atual em minutos
     private static ArrayList<Evento> eventos;   // evento atual, se tiver um evento
     private static Selecionavel selecionado;    // algo selecionado
-    private Random rand;
+    private static Random rand;
     private static boolean fogueiraAcesa = false;
     // inicia as variaveis básicas do ambiente
     private Mecanica(Pessoa pessoa){
         this.jogador = pessoa;
         this.vivo = true;
         this.tempoAtual = 0;
+    }
+    
+    public void setSelecionado(Selecionavel sel) {
+        this.selecionado = sel;
     }
     
     public Pessoa getJogador() {
@@ -96,9 +100,8 @@ public class Mecanica {
     public void operarEvento(int opt) throws EventoException {
         //
         Evento eventoAtual = eventos.get(eventos.size() - 1);
-        Evento ev;
         if(eventoAtual instanceof Batalha) {
-            ev = (Batalha) eventoAtual;
+            Batalha ev = (Batalha) eventoAtual;
             switch(opt) {
                 case 1:
                     try {
@@ -147,13 +150,13 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof Armadilha) {
-            ev = (Armadilha) eventoAtual;
+            Armadilha ev = (Armadilha) eventoAtual;
             if(opt == 1) {
                 ev.continuar(this.jogador);
             }
         }
         else if(eventoAtual instanceof NovoItem) {
-            ev = (NovoItem) eventoAtual;
+            NovoItem ev = (NovoItem) eventoAtual;
             switch(opt) {
                 case 1:
                     ev.pegarItem(jogador);
@@ -164,7 +167,7 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof NenhumEvento) {
-            ev = (NenhumEvento) eventoAtual;
+            NenhumEvento ev = (NenhumEvento) eventoAtual;
             if(opt == 1) {
                 ev.continuar();
             }
@@ -173,9 +176,9 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof DiminuirSanidade) {
-            ev = (DiminuirSanidade) eventoAtual;
+            DiminuirSanidade ev = (DiminuirSanidade) eventoAtual;
             if(opt == 1) {
-                eventoAtual.continuar(this.jogador);
+                ev.continuar(this.jogador);
             }
         }
         else if(eventoAtual instanceof SelecionarItem) {
@@ -185,7 +188,7 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof EventoPadrao) {
-            ev = (EventoPadrao) eventoAtual;
+            EventoPadrao ev = (EventoPadrao) eventoAtual;
             switch(opt) {
                 case 1:
                     ev.info();
@@ -209,8 +212,8 @@ public class Mecanica {
     
     public void fechaEvento() {
         Evento ev = eventos.get(eventos.size() - 1);
-        if(ev.getFimEvento) {
-            ev.remove(eventos.size() - 1);
+        if(ev.getFimEvento()) {
+            eventos.remove(eventos.size() - 1);
         }
     }
 
