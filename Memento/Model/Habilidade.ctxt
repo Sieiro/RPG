@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=nome\ descricao\ dano
+comment0.target=Habilidade(java.lang.String,\ java.lang.String,\ int)
+numComments=1
