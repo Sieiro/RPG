@@ -19,12 +19,16 @@ public class Mecanica {
 		this.tempoAtual = 0;
 	}
 	
-	private static void setInstancia(Pessoa pessoa) {
-		this(pessoa);
+	public static Mecanica getInstancia() {
+		return this.instancia;
 	}
-	
-	private static Mecanica getInstancia() {
-		return instancia;
+
+	private static Mecanica getInstancia(Pessoa pessoa) {
+		if(this.instancia == null) {
+			this.instancia = new Mecanica(pessoa);
+			return this.instancia;
+		}
+		return this.instancia;
 	}
 	
 	// inicia um evento com um numero da ação previa feita
