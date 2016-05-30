@@ -1,5 +1,5 @@
 package Model;
-public class Magia implements Dano{
+public class Magia implements Dano, Selecionavel{
     private String nome;
     private String descricao;
     private int dano;

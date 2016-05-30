@@ -1,8 +1,10 @@
 package Controller;
+import Model.*;
+import java.util.ArrayList;
 public class Armadilha extends Evento {
     public Armadilha(int opt) {
         super(opt, "Armadilha encontrada (opt " + opt + ")");
-        List<String> lista = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<String>();
         lista.add("Continuar");
         setOpcoes(lista);
     }
@@ -11,7 +13,7 @@ public class Armadilha extends Evento {
     public void continuar(Pessoa pessoa) {
         //
         pessoa.setVida(pessoa.getVida() - 10);
-        this.setMensagem("Você perde vida!");
+        this.setMensagem("Você perdeu vida!");
         this.setFimEvento(true);
     }
 }

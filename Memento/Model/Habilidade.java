@@ -1,5 +1,5 @@
 package Model;
-public class Habilidade implements Dano{
+public class Habilidade implements Dano, Selecionavel{
     private String nome;
     private String descricao;
     private int dano;

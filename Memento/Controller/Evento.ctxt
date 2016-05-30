@@ -1,8 +1,16 @@
 #BlueJ class context
-comment0.params=
-comment0.target=Evento()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Evento\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
-numComments=2
+comment0.params=opt\ mensagem
+comment0.target=Evento(int,\ java.lang.String)
+comment1.params=
+comment1.target=java.lang.String\ getMensagem()
+comment2.params=
+comment2.target=int\ getOpt()
+comment3.params=
+comment3.target=java.util.ArrayList\ getOpcoes()
+comment4.params=opcoes
+comment4.target=void\ setOpcoes(java.util.ArrayList)
+comment5.params=
+comment5.target=boolean\ getFimEvento()
+comment6.params=fim
+comment6.target=void\ setFimEvento(boolean)
+numComments=7

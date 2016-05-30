@@ -1,12 +1,14 @@
 package Controller;
 import java.util.Random;
+import java.util.ArrayList;
 import Model.*;
+
 public class Mecanica {
 	private static Mecanica instancia; 			// singleton
 	private static Pessoa jogador; 				// jogador atual
 	private static boolean vivo; 				// se o jogador esta vivo ou não
 	private static int tempoAtual; 				// tempo atual em minutos
-	private static List<Evento> eventos; 		// evento atual, se tiver um evento
+	private static ArrayList<Evento> eventos = new ArrayList<Evento>(); 		// evento atual, se tiver um evento
 	private static Selecionavel selecionado;	// algo selecionado
 	Random rand;
 	
@@ -17,11 +19,11 @@ public class Mecanica {
 		this.tempoAtual = 0;
 	}
 	
-	private static setInstancia(Pessoa pessoa) {
+	private static void setInstancia(Pessoa pessoa) {
 		this(pessoa);
 	}
 	
-	private static getInstancia() {
+	private static Mecanica getInstancia() {
 		return instancia;
 	}
 	
@@ -34,7 +36,7 @@ public class Mecanica {
 	// opera o evento com um numero escolhido pelo usuario
 	public void operarEvento(int opt) throws EventoException {
 		//
-		Evento eventoAtual = eventos.get(eventos.size() - 1)
+		Evento eventoAtual = eventos.get(eventos.size() - 1);
 		if(eventoAtual instanceof Batalha) {
 			switch(opt) {
 				case 1:
@@ -48,7 +50,7 @@ public class Mecanica {
 					//
 				case 2:
 					if(selecionado == null) {
-						eventos.add(new SelecionarDano);
+						eventoAtual.selecionarDano();
 					}
 					else {
 						if(selecionado instanceof Dano) {
@@ -66,7 +68,7 @@ public class Mecanica {
 					//
 				case 3:
 					if(selecionado == null)
-						eventos.add(new SelecionarItem);
+						eventoAtual.selecionarItem();
 					else {
 						if(selecionado instanceof Item) {
 							try {
@@ -139,7 +141,7 @@ public class Mecanica {
 	}
 	
 	public void fechaEvento() {
-		Evento ev = eventos.get(eventos.size() - 1)
+		Evento ev = eventos.get(eventos.size() - 1);
 		if(ev.getFimEvento) {
 			ev.remove(eventos.size() - 1);
 		}
