@@ -7,4 +7,8 @@ public abstract class Item{
         this.nome = nome;
         this.descricao = descricao;
     }
+     
+    public String getNome() {
+        return this.nome;
+    }
 }

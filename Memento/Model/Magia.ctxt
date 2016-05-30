@@ -1,4 +1,16 @@
 #BlueJ class context
 comment0.params=nome\ descricao\ dano
 comment0.target=Magia(java.lang.String,\ java.lang.String,\ int)
-numComments=1
+comment1.params=n
+comment1.target=void\ setNome(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getNome()
+comment3.params=d
+comment3.target=void\ setDescricao(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getDescricao()
+comment5.params=da
+comment5.target=void\ setDano(int)
+comment6.params=
+comment6.target=int\ getDano()
+numComments=7

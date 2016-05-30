@@ -1,13 +1,13 @@
 package Controller;
 import Model.*;
-
+import java.util.*;
 public class Batalha extends Evento
 {
     private Inimigo inimigo;
         
     public Batalha(int opt) {
         super(opt, "Batalha com um Orc (opt " + opt + ")");
-        this.inimigo = Inimigo("Orc", 150, 10, 10);
+        this.inimigo = new Inimigo("Orc", 150, 10, 10);
         List<String> lista = new ArrayList<>();
         lista.add("Ataque Normal");
         lista.add("Habilidade");
@@ -21,7 +21,7 @@ public class Batalha extends Evento
     
     public void atacar(Pessoa pessoa) throws EventoException {
         //
-        Pessoa jogador = Mecanica.getJogador();
+        Pessoa jogador = Mecanica.getInstancia().getJogador();
         Arma arma = pessoa.getArma();
         int dano = arma.getAtaque() - this.inimigo.getDefesa();
         if(jogador instanceof Mago) {
