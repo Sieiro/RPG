@@ -51,6 +51,20 @@ public class Mecanica {
         eventos.add(ev);
     }
     
+    
+    public static void verificaMorte(Pessoa player)
+    {
+        if(player.getSanidade() < 0)
+        {
+           System.out.println("Game Over");
+           System.exit(0);
+        }
+        if(player.getVida() < 0)
+        {
+            System.out.println("Game Over");
+            System.exit(0);
+        }
+    }
     public static void acendefogueira(int opt,Pessoa player){
         //opt = tempo
         fogueiraAcesa = true;
@@ -77,9 +91,6 @@ public class Mecanica {
             System.out.println("nao é possivel dormir tanto!");
         }
     }
-    
-    
-    
     
     // opera o evento com um numero escolhido pelo usuario
     public void operarEvento(int opt) throws EventoException {
