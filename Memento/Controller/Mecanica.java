@@ -3,6 +3,7 @@ import java.util.*;
 import Model.*;
 import java.util.Random;
 public class Mecanica {
+    private static boolean turno;
     private static Mecanica instancia;          // singleton
     private static Pessoa jogador;              // jogador atual
     private static boolean vivo;                // se o jogador esta vivo ou não
@@ -13,6 +14,7 @@ public class Mecanica {
     private static boolean fogueiraAcesa = false;
     // inicia as variaveis básicas do ambiente
     private Mecanica(Pessoa pessoa){
+        this.turno = true;
         this.jogador = pessoa;
         this.vivo = true;
         this.tempoAtual = 0;
@@ -34,6 +36,10 @@ public class Mecanica {
         if(eventos.size() > 0)
             return true;
         return false;
+    }
+    
+    public boolean getTurno() {
+        return this.turno;
     }
 
     public static Mecanica getInstancia(Pessoa pessoa) {
@@ -104,6 +110,7 @@ public class Mecanica {
             Batalha ev = (Batalha) eventoAtual;
             switch(opt) {
                 case 1:
+                    this.turno = false;
                     try {
                         ev = (Batalha) eventoAtual;
                         ev.atacar(this.jogador);
@@ -114,6 +121,7 @@ public class Mecanica {
                     break;
                     //
                 case 2:
+                    this.turno = false;
                     if(selecionado == null) {
                         iniciarEvento(new SelecionarDano(opt));
                     }
@@ -132,6 +140,7 @@ public class Mecanica {
                     break;
                     //
                 case 3:
+                    this.turno = false;
                     if(selecionado == null)
                         iniciarEvento(new SelecionarItem(opt));
                     else {

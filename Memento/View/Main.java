@@ -28,6 +28,7 @@ public class Main {
 
     public static void run() {
         while(mecanica.temEventos()) {
+            if(Mecanica.getInstancia().getTurno())
             int i=1;
             imprimir("Digite sua opção:");
             ArrayList<String> opcoes = mecanica.getOpcoes();

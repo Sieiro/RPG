@@ -4,7 +4,7 @@ import java.util.*;
 public class Batalha extends Evento
 {
     private Inimigo inimigo;
-        
+    private boolean turno;
     public Batalha(int opt) {
         super(opt, "Batalha com um Orc (opt " + opt + ")");
         this.inimigo = new Inimigo("Orc", 150, 10, 10);
@@ -12,6 +12,7 @@ public class Batalha extends Evento
         lista.add("Ataque Normal");
         lista.add("Habilidade");
         lista.add("Magia");
+        this.turno = true;
         //lista.add("Item");
         //lista.add("Fugir");
         this.setOpcoes(lista);
@@ -74,6 +75,7 @@ public class Batalha extends Evento
     }
     
     // monstro te ataca
+    
     public void recebe(Pessoa pessoa) {
         pessoa.setVida(pessoa.getVida() - (inimigo.getAtaque() - pessoa.getArmadura().getDefesa()));
         if(pessoa.getVida() <= 0) {
