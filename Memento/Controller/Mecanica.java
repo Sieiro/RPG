@@ -21,8 +21,12 @@ public class Mecanica {
         this.rand = new Random();
     }
     
+    public Evento ultimoEvento() {
+        return eventos.get(eventos.size() - 1);
+    }
+    
     public String getMensagem() {
-        Evento ev = eventos.get(eventos.size() - 1);
+        Evento ev = ultimoEvento();
         return ev.getMensagem();
     }
     
@@ -39,7 +43,7 @@ public class Mecanica {
     }
     
     public void monstroAtaque() {
-        Evento eventoAtual = eventos.get(eventos.size() - 1);
+        Evento eventoAtual = ultimoEvento();
         Batalha ev = (Batalha) eventoAtual;
         ev.recebe(jogador);
     }
@@ -68,7 +72,7 @@ public class Mecanica {
     }
 
     public List<String> getOpcoes() {
-        return eventos.get(eventos.size() - 1).getOpcoes();
+        return ultimoEvento().getOpcoes();
     }
     
     // inicia um evento com um numero da ação previa feita
@@ -77,53 +81,11 @@ public class Mecanica {
         eventos.add(ev);
     }
     
-    
-    public static void verificaMorte(Pessoa player)
-    {
-        if(player.getSanidade() < 0)
-        {
-           System.out.println("Game Over");
-           System.exit(0);
-        }
-        if(player.getVida() < 0)
-        {
-            System.out.println("Game Over");
-            System.exit(0);
-        }
-    }
-    public static void acendefogueira(int opt,Pessoa player){
-        //opt = tempo
-        fogueiraAcesa = true;
-        Random gerador = new Random();
-        int numero;
-        for(int i=0;i<opt ; i++){
-            player.setSanidade(player.getSanidade() + 1);
-            numero = gerador.nextInt(20);
-            if(numero<4){
-                //aqui vai combate aleatorio com orc
-                break;
-            }        
-    }
-        fogueiraAcesa = false;
-    }
-    public static void dormir(int opt, Pessoa player)
-    {
-        //opt = tempo em horas
-            if(opt < 10){
-            player.setSanidade(player.getSanidade() - opt);
-            player.setVida(player.getVida() + opt);
-        }
-        else{
-            System.out.println("nao é possivel dormir tanto!");
-        }
-    }
-    
     // opera o evento com um numero escolhido pelo usuario
     public void operarEvento(int opt) throws EventoException {
         //
-        Evento eventoAtual = eventos.get(eventos.size() - 1);
+        Evento eventoAtual = ultimoEvento();
         if(eventoAtual instanceof Batalha) {
-            System.out.println("top batalha");
             Batalha ev = (Batalha) eventoAtual;
             switch(opt) {
                 case 1:
@@ -176,14 +138,12 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof Armadilha) {
-            System.out.println("top armadilha");
             Armadilha ev = (Armadilha) eventoAtual;
             if(opt == 1) {
                 ev.continuar(this.jogador);
             }
         }
         else if(eventoAtual instanceof NovoItem) {
-            System.out.println("top novoitem");
             NovoItem ev = (NovoItem) eventoAtual;
             switch(opt) {
                 case 1:
@@ -195,7 +155,6 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof NenhumEvento) {
-            System.out.println("top nenhum evento");
             NenhumEvento ev = (NenhumEvento) eventoAtual;
             if(opt == 1) {
                 ev.continuar();
@@ -205,7 +164,6 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof DiminuirSanidade) {
-            System.out.println("top diminuir sanidade");
             DiminuirSanidade ev = (DiminuirSanidade) eventoAtual;
             if(opt == 1) {
                 ev.continuar(this.jogador);
@@ -218,7 +176,6 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof EventoPadrao) {
-            System.out.println("top evento padrao");
             EventoPadrao ev = (EventoPadrao) eventoAtual;
             switch(opt) {
                 case 1:
@@ -241,7 +198,7 @@ public class Mecanica {
     }
     
     public void fechaEvento() {
-        Evento ev = eventos.get(eventos.size() - 1);
+        Evento ev = ultimoEvento();
         if(ev.getFimEvento()) {
             eventos.remove(eventos.size() - 1);
         }

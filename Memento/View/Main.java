@@ -58,8 +58,10 @@ public class Main {
                 imprimir(mecanica.getMensagem());
             }
             else {
+                if(Mecanica.getInstance().ultimoEvento() instanceof Batalha) {
                     mecanica.monstroAtaque();
-                imprimir(mecanica.getMensagem());
+                    imprimir(mecanica.getMensagem());
+                }
             }
             mecanica.fechaEvento();
         }
