@@ -1,18 +1,17 @@
 package Controller;
 public class Armadilha extends Evento {
-    private String[] opcoes = {"Continuar"};
-    
     public Armadilha(int opt) {
-        super(opt, "Você encontrou uma armadilha enquanto selecionava a opção" + opt);
+        super(opt, "Armadilha encontrada (opt " + opt + ")");
+        List<String> lista = new ArrayList<>();
+        lista.add("Continuar");
+        setOpcoes(lista);
     }
     
     // retira pontos de vida do jogador
     public void continuar(Pessoa pessoa) {
         //
-    }
-    
-    // pega as opções
-    public String[] getOpcoes() {
-        return this.opcoes;
+        pessoa.setVida(pessoa.getVida() - 10);
+        this.setMensagem("Você perde vida!");
+        this.setFimEvento(true);
     }
 }

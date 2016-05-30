@@ -1,4 +1,5 @@
 package Controller;
-public class Info extends Evento{
+
+public class SelecionarDano {
     // não implementado ainda
 }
