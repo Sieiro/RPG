@@ -1,15 +1,19 @@
 package Model;
-import java.util.ArrayList;
+import java.util.*;
 public class Mochila {
-    ArrayList<Item> itens = new ArrayList<Item>();
+    List<Item> itens = new ArrayList<Item>();
     private Mochila instancia;
     public static Mochila getInstancia() {
     	if(instancia == null) {
     		instancia = new Mochila();
-    		return instancia
+    		return instancia;
     	}
     	else
     		return instancia;
 
+    }
+    
+    public void add(Item item) {
+        itens.add(item);
     }
 }
