@@ -5,7 +5,7 @@ public class NovoItem extends Evento {
     private Item item;
     
     public NovoItem(int opt) {
-        super(opt, "Item encontrado! (opt " + opt + ")");
+        super(opt, "Item encontrado!");
         this.item = new Consumivel("Poção.", "Recupera vida.");
         ArrayList<String> lista = new ArrayList<String>();
         lista.add("Pegar Item");
@@ -14,11 +14,20 @@ public class NovoItem extends Evento {
     }
     
     // pega o item
-    public void pegarItem(Pessoa pessoa) {
+    public void pegarItem() {
         //
-        Mochila.getInstancia().add(this.item);
+        //Mochila.getInstancia().add(this.item);
+        Pessoa pessoa = Mecanica.getInstancia().getJogador();
+        int vidaAnterior = pessoa.getVida();
+        pessoa.setVida(pessoa.getVida() + Mecanica.getInstancia().gerarNumero(7,23));
+        if(pessoa instanceof Mago && pessoa.getVida() > 250) {
+            pessoa.setVida(250);
+        }
+        else if(pessoa instanceof Cavaleiro && pessoa.getVida() > 300) {
+            pessoa.setVida(300);
+        }
         this.setFimEvento(true);
-        this.setMensagem("Você conseguiu: " + item.getNome());
+        this.setMensagem("Você conseguiu: " + item.getNome() + " e a usou recuperando: " + (pessoa.getVida() - vidaAnterior) + "(" + pessoa.getVida() + ")");
     }
     
     // descarta o item

@@ -34,7 +34,7 @@ public class EventoPadrao extends Evento {
     }
     
     public void sair() {
-        this.setMensagem("Game Over");
+        this.setMensagem("");
         this.setFimEvento(true);
     }
 
@@ -54,10 +54,10 @@ public class EventoPadrao extends Evento {
 				return new NenhumEvento(opt); // não aconteceu nada
 			case 3:
 				// ascender fogueira
-				if(chance < 10)
-					return new Batalha(opt);
-				if(chance < 40)
+				if(chance < 5)
 					return new DiminuirSanidade(opt);
+				if(chance < 40)
+					return new Batalha(opt);
 				return new NenhumEvento(opt); // não aconteceu nada
 			case 4:
 				// explorar

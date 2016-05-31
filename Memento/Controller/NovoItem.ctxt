@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.params=opt
 comment0.target=NovoItem(int)
-comment1.params=pessoa
-comment1.target=void\ pegarItem(Model.Pessoa)
+comment1.params=
+comment1.target=void\ pegarItem()
 comment2.params=
 comment2.target=void\ descartarItem()
 numComments=3

@@ -18,14 +18,13 @@ public class Main {
         Pessoa pessoa = null;
         switch(opt) {
             case 1:
-                pessoa = new Mago(null,1,1);
+                pessoa = new Mago(null, 250, 100);
                 break;
             case 2:
-                pessoa = new Cavaleiro(null,1,1);
+                pessoa = new Cavaleiro(null, 300, 100);
                 break;
             default:
                 imprimir("Classe não selecionada... Fechando.");
-                System.exit(0);
         }
         if(pessoa != null) {
             imprimir("Digite seu nome: ");
@@ -58,13 +57,18 @@ public class Main {
                 imprimir(mecanica.getMensagem());
             }
             else {
-                if(Mecanica.getInstance().ultimoEvento() instanceof Batalha) {
+                if(Mecanica.getInstancia().ultimoEvento() instanceof Batalha) {
                     mecanica.monstroAtaque();
                     imprimir(mecanica.getMensagem());
                 }
+                else {
+                    Mecanica.getInstancia().passarTurno();
+                }
             }
-            mecanica.fechaEvento();
+            arg = mecanica.check();
+            if(arg != null) imprimir(arg);
         }
+        imprimir("Game Over");
     }
 
     public static void imprimir(String msg) {

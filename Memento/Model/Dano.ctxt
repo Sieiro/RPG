@@ -1,2 +1,8 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=boolean\ emRecarga()
+comment1.params=
+comment1.target=void\ usar()
+comment2.params=
+comment2.target=int\ getDano()
+numComments=3

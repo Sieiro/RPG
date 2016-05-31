@@ -8,10 +8,10 @@ public class Mecanica {
     private static Pessoa jogador;              // jogador atual
     private static boolean vivo;                // se o jogador esta vivo ou não
     private static int tempoAtual;              // tempo atual em minutos
-    private static ArrayList<Evento> eventos;   // evento atual, se tiver um evento
+    private static int dias;
+    private static List<Evento> eventos;   // evento atual, se tiver um evento
     private static Selecionavel selecionado;    // algo selecionado
     private static Random rand;
-    private static boolean fogueiraAcesa = false;
     // inicia as variaveis básicas do ambiente
     private Mecanica(Pessoa pessoa){
         this.turno = true;
@@ -19,6 +19,42 @@ public class Mecanica {
         this.vivo = true;
         this.tempoAtual = 0;
         this.rand = new Random();
+    }
+    
+    public String check() {
+        //checar se a pessoa esta viva, se ja passou o horario da noite (1440)
+        fechaEvento();
+        // jogador morreu
+        if(!this.vivo) {
+            eventos.clear();
+            return "Você morreu.";
+        }
+        
+        // reseta o tempo
+        if(tempoAtual >= 1440) {
+            tempoAtual = 0;
+            dias++;
+            // itera sobre todos os Danos de jogador e retira o cooldown
+            return String.valueOf("" + dias + " Dia");
+        }
+        
+        if(jogador.getSanidade() <= 0) {
+            eventos.clear();
+            return "Você ficou louco!";
+        }
+        return null;
+    }
+    
+    public boolean getVivo() {
+        return this.vivo;
+    }
+    
+    public void setVivo(boolean b) {
+        this.vivo = b;
+    }
+    
+    public int getDias() {
+        return this.dias;
     }
     
     public Evento ultimoEvento() {
@@ -45,7 +81,7 @@ public class Mecanica {
     public void monstroAtaque() {
         Evento eventoAtual = ultimoEvento();
         Batalha ev = (Batalha) eventoAtual;
-        ev.recebe(jogador);
+        ev.recebe();
     }
 
     public boolean temEventos() {
@@ -89,10 +125,11 @@ public class Mecanica {
             Batalha ev = (Batalha) eventoAtual;
             switch(opt) {
                 case 1:
+                    this.tempoAtual += gerarNumero(20, 60);
                     this.turno = false;
                     try {
                         ev = (Batalha) eventoAtual;
-                        ev.atacar(this.jogador);
+                        ev.atacar();
                     }
                     catch (EventoException ex) {
                         throw new EventoException(ex);
@@ -100,6 +137,11 @@ public class Mecanica {
                     break;
                     //
                 case 2:
+                    if(Mochila.getInstancia().getDanoQuantidade() == 0) {
+                        ev.setMensagem("Você não tem nenhuma Magia ou Habilidade!");
+                        break;
+                    }
+                    this.tempoAtual += gerarNumero(20, 60);
                     this.turno = false;
                     if(selecionado == null) {
                         iniciarEvento(new SelecionarDano(opt));
@@ -119,6 +161,11 @@ public class Mecanica {
                     break;
                     //
                 case 3:
+                    if(Mochila.getInstancia().getItemQuantidade() == 0) {
+                        ev.setMensagem("Você não tem nenhum item!");
+                        break;
+                    }                
+                    this.tempoAtual += gerarNumero(20, 60);
                     this.turno = false;
                     if(selecionado == null)
                         iniciarEvento(new SelecionarItem(opt));
@@ -135,19 +182,26 @@ public class Mecanica {
                             throw new EventoException("Você não selecionou um item!");
                     }
                     break;
+                case 4: // fugir
+                    this.tempoAtual += gerarNumero(60, 100);
+                    this.turno = false;
+                    ev.fugir();
+                    break;
             }
         }
         else if(eventoAtual instanceof Armadilha) {
+            this.tempoAtual += gerarNumero(10, 30);
             Armadilha ev = (Armadilha) eventoAtual;
             if(opt == 1) {
-                ev.continuar(this.jogador);
+                ev.continuar();
             }
         }
         else if(eventoAtual instanceof NovoItem) {
+            this.tempoAtual += gerarNumero(10, 30);
             NovoItem ev = (NovoItem) eventoAtual;
             switch(opt) {
                 case 1:
-                    ev.pegarItem(jogador);
+                    ev.pegarItem();
                     break;
                 case 2:
                     ev.descartarItem();
@@ -155,18 +209,24 @@ public class Mecanica {
             }
         }
         else if(eventoAtual instanceof NenhumEvento) {
+            this.tempoAtual += gerarNumero(10, 15);
             NenhumEvento ev = (NenhumEvento) eventoAtual;
             if(opt == 1) {
                 ev.continuar();
             }
         }
         else if(eventoAtual instanceof Info) {
-            // não implementado ainda
+            this.tempoAtual += gerarNumero(3, 5);
+            Info ev = (Info) eventoAtual;
+            if(opt == 1) {
+                ev.continuar();
+            }
         }
         else if(eventoAtual instanceof DiminuirSanidade) {
+            this.tempoAtual += gerarNumero(10, 30);
             DiminuirSanidade ev = (DiminuirSanidade) eventoAtual;
             if(opt == 1) {
-                ev.continuar(this.jogador);
+                ev.continuar();
             }
         }
         else if(eventoAtual instanceof SelecionarItem) {
@@ -176,18 +236,26 @@ public class Mecanica {
             // não implementado ainda
         }
         else if(eventoAtual instanceof EventoPadrao) {
+            this.tempoAtual += gerarNumero(30, 45);
             EventoPadrao ev = (EventoPadrao) eventoAtual;
             switch(opt) {
                 case 1:
+                    this.tempoAtual += gerarNumero(10, 15);
                     ev.info();
                     break;
                 case 2:
+                    this.tempoAtual += gerarNumero(180, 360);
+                    this.jogador.setSanidade(this.jogador.getSanidade() + gerarNumero(5, 10));
+                    this.jogador.setVida(this.jogador.getVida() + gerarNumero(5, 10));
                     ev.dormir();
                     break;
                 case 3:
+                    this.tempoAtual += gerarNumero(45, 60);
+                    this.jogador.setSanidade(this.jogador.getSanidade() + gerarNumero(13, 25));
                     ev.fogueira();
                     break;
                 case 4:
+                    this.tempoAtual += gerarNumero(15, 25);
                     ev.explorar();
                     break;
                 case 5:
@@ -198,9 +266,13 @@ public class Mecanica {
     }
     
     public void fechaEvento() {
-        Evento ev = ultimoEvento();
-        if(ev.getFimEvento()) {
-            eventos.remove(eventos.size() - 1);
+        Evento ev;
+        for(int i = 0; i < eventos.size() && eventos.size() > 0; i++) {
+            ev = eventos.get(i);
+            if(ev.getFimEvento()) {
+                eventos.remove(i);
+                i = -1;
+            }
         }
     }
 

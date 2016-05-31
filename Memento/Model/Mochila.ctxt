@@ -1,2 +1,14 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=Mochila()
+comment1.params=
+comment1.target=Mochila\ getInstancia()
+comment2.params=item
+comment2.target=void\ add(Item)
+comment3.params=item
+comment3.target=void\ remove(Item)
+comment4.params=
+comment4.target=int\ getDanoQuantidade()
+comment5.params=
+comment5.target=int\ getItemQuantidade()
+numComments=6
