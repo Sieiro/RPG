@@ -136,6 +136,7 @@ public class Mecanica {
                     }
                     break;
                     //
+                /*
                 case 2:
                     if(Mochila.getInstancia().getDanoQuantidade() == 0) {
                         ev.setMensagem("Você não tem nenhuma Magia ou Habilidade!");
@@ -182,7 +183,8 @@ public class Mecanica {
                             throw new EventoException("Você não selecionou um item!");
                     }
                     break;
-                case 4: // fugir
+                */
+                case 2: // fugir
                     this.tempoAtual += gerarNumero(60, 100);
                     this.turno = false;
                     ev.fugir();
