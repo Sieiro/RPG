@@ -7,11 +7,11 @@ public class Main {
     private static int opt;
     private static String arg;
 
-    public Main() {
+    private Main() {
 
     }
 
-    public static void main() {
+    public static void main(String[] args) {
         imprimir(" - Memento - v1.0.b");
         imprimir("Digite qual classe deverá ser (1) Mago (2) Cavaleiro: ");
         opt = Keyboard.readInt();
