@@ -12,8 +12,8 @@ public class Batalha extends Evento
         setMensagem("Batalha com: " + inimigo.getNome() + " Encontrada!");
         List<String> lista = new ArrayList<>();
         lista.add("Ataque Normal");
-        lista.add("Usar Habilidade");
-        lista.add("Usar Magia");
+        lista.add("Usar Habilidade ou Magia");
+        lista.add("Usar Item");
         this.turno = true;
         //lista.add("Usar Item");
         lista.add("Fugir");
