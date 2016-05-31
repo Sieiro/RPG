@@ -39,38 +39,39 @@ public class EventoPadrao extends Evento {
     }
 
     public Evento gerarEvento(int opt) {
-		// opt (1) Checar info (2) dormir (3) ascender fogueira (4) explorar (5) Sair do jogo
-		int chance = Mecanica.gerarNumero(0, 100);
-		switch(opt) {
-			case 1:
-				// checar info
-				return new Info(opt);
-			case 2:
-				// dormir
-				if(chance < 10)
-					return new Batalha(opt);
-				if(chance < 20)
-					return new DiminuirSanidade(opt);
-				return new NenhumEvento(opt); // não aconteceu nada
-			case 3:
-				// ascender fogueira
-				if(chance < 5)
-					return new DiminuirSanidade(opt);
-				if(chance < 40)
-					return new Batalha(opt);
-				return new NenhumEvento(opt); // não aconteceu nada
-			case 4:
-				// explorar
-				if(chance < 15)
-					return new Batalha(opt);
-				if(chance < 30)
-					return new Armadilha(opt);
-				if(chance < 45)
-					return new NovoItem(opt);
-				if(chance < 60)
-					return new DiminuirSanidade(opt);
-				return new NenhumEvento(opt); // não aconteceu nada
-		}
-		return new NenhumEvento(opt);
-	}
+        // opt (1) Checar info (2) dormir (3) ascender fogueira (4) explorar (5) Sair do jogo
+        int chance = Mecanica.gerarNumero(0, 100);
+        switch(opt) {
+            case 1:
+                // checar info
+                return new Info(opt);
+            case 2:
+                // dormir
+                if(chance < 10)
+                    return new Batalha(opt);
+                if(chance < 20)
+                    return new DiminuirSanidade(opt);
+                return new NenhumEvento(opt); // não aconteceu nada
+            case 3:
+                // ascender fogueira
+                if(chance < 5)
+                    return new DiminuirSanidade(opt);
+                if(chance < 40)
+                    return new Batalha(opt);
+                return new NenhumEvento(opt); // não aconteceu nada
+            case 4:
+                // explorar
+                if(chance < 5)
+                    return new NenhumEvento(opt);
+                if(chance < 20)
+                    return new DiminuirSanidade(opt);
+                if(chance < 35)
+                    return new NovoItem(opt);
+                if(chance < 45)
+                    return new Armadilha(opt);
+                else
+                    return new Batalha(opt);
+        }
+        return new NenhumEvento(opt);
+    }
 }
