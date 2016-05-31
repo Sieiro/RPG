@@ -247,11 +247,19 @@ public class Mecanica {
                     this.tempoAtual += gerarNumero(180, 360);
                     this.jogador.setSanidade(this.jogador.getSanidade() + gerarNumero(5, 10));
                     this.jogador.setVida(this.jogador.getVida() + gerarNumero(5, 10));
+                    if(jogador.getSanidade() > 100) jogador.setSanidade(100);
+                    if(jogador instanceof Mago) {
+                        if(jogador.getVida() > 250) jogador.setVida(250);
+                    }
+                    else if(jogador instanceof Cavaleiro) {
+                        if(jogador.getVida() > 300) jogador.setVida(250);
+                    }
                     ev.dormir();
                     break;
                 case 3:
                     this.tempoAtual += gerarNumero(45, 60);
                     this.jogador.setSanidade(this.jogador.getSanidade() + gerarNumero(13, 25));
+                    if(jogador.getSanidade() > 100) jogador.setSanidade(100);
                     ev.fogueira();
                     break;
                 case 4:

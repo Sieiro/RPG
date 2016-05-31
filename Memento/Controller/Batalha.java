@@ -23,15 +23,16 @@ public class Batalha extends Evento
     public Inimigo gerarInimigo() {
         //Inimigo("Orc", 150, 35, 10)
         int chance = Mecanica.getInstancia().gerarNumero(1,4);
+        //public Inimigo(String nome, int vida, int defesa, int ataque){
         switch(chance) {
             case 1:
-                return new Inimigo("Lobo", 75, 50, 6);
+                return new Inimigo("Lobo", 75, 6, 50);
             case 2:
-                return new Inimigo("Goblin", 150, 35, 10);
+                return new Inimigo("Goblin", 150, 10, 35);
             case 3:
-                return new Inimigo("Orc", 220, 50, 22);
+                return new Inimigo("Orc", 220, 13, 50);
             default:
-                return new Inimigo("Espectro", 20, 25, 75);
+                return new Inimigo("Espectro", 20, 75, 25);
         }
     }
     
@@ -42,6 +43,7 @@ public class Batalha extends Evento
         Pessoa pessoa = Mecanica.getInstancia().getJogador();
         Arma arma = pessoa.getArma();
         int dano = arma.getAtaque() - this.inimigo.getDefesa();
+        if(dano < 0) dano = 0;
         int vidaAnterior = this.inimigo.getVida();
         if(pessoa instanceof Mago) {
             this.inimigo.setVida(vidaAnterior - (dano));
@@ -108,7 +110,9 @@ public class Batalha extends Evento
     public void recebe() {
         Pessoa pessoa = Mecanica.getInstancia().getJogador();
         int vidaAnterior = pessoa.getVida();
-        pessoa.setVida(vidaAnterior - (inimigo.getAtaque() - pessoa.getArmadura().getDefesa()));
+        int dano = inimigo.getAtaque() - pessoa.getArmadura().getDefesa();
+        if(dano < 0) dano = 0;
+        pessoa.setVida(vidaAnterior - (dano));
         if(pessoa.getVida() <= 0) {
             this.setFimEvento(true);
             Mecanica.getInstancia().passarTurno();

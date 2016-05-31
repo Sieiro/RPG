@@ -14,7 +14,6 @@ public class NenhumEvento extends Evento {
         //
         Pessoa pessoa = Mecanica.getInstancia().getJogador();
         this.setMensagem("Você continou então sua vida...");
-        pessoa.setSanidade(pessoa.getSanidade() - 5);
         this.setFimEvento(true);
     }
 }

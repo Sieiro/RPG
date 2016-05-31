@@ -5,8 +5,9 @@ public class NovoItem extends Evento {
     private Item item;
     
     public NovoItem(int opt) {
-        super(opt, "Item encontrado!");
+        super(opt, "");
         this.item = new Consumivel("Poção.", "Recupera vida.");
+        setMensagem("Item encontrado: " + item.getNome() + "!");
         ArrayList<String> lista = new ArrayList<String>();
         lista.add("Pegar Item");
         lista.add("Descartar Item");
@@ -19,7 +20,7 @@ public class NovoItem extends Evento {
         //Mochila.getInstancia().add(this.item);
         Pessoa pessoa = Mecanica.getInstancia().getJogador();
         int vidaAnterior = pessoa.getVida();
-        pessoa.setVida(pessoa.getVida() + Mecanica.getInstancia().gerarNumero(7,23));
+        pessoa.setVida(pessoa.getVida() + Mecanica.getInstancia().gerarNumero(20,50));
         if(pessoa instanceof Mago && pessoa.getVida() > 250) {
             pessoa.setVida(250);
         }

@@ -15,7 +15,7 @@ public class EventoPadrao extends Evento {
     
     public void info() {
         //
-        //Mecanica.getInstancia().iniciarEvento(gerarEvento(1));
+        Mecanica.getInstancia().iniciarEvento(gerarEvento(1));
     }
     
     public void dormir() {
@@ -49,7 +49,7 @@ public class EventoPadrao extends Evento {
 				// dormir
 				if(chance < 10)
 					return new Batalha(opt);
-				if(chance < 40)
+				if(chance < 20)
 					return new DiminuirSanidade(opt);
 				return new NenhumEvento(opt); // não aconteceu nada
 			case 3:
